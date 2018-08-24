@@ -1,0 +1,42 @@
+<template>
+  <div class="box">
+    <div class="Mcontent">
+      lalalalalallalalalalalalalalalalalalalalalalalla
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">发布人</div>
+      <div class="Mright">渣渣辉</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">联系方式</div>
+      <div class="Mright">18888888888</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">状态</div>
+      <div class="Mright">
+        待认领
+      </div>
+    </div>
+    <div class="Mfooter" @click="submit">
+      <button>再次发送</button>
+    </div>
+  </div>
+</template>
+
+<script>
+    export default {
+      name: "unclaimde",
+      created(){
+        console.log(this.$route.params.Id);
+      },
+      methods:{
+        submit(){
+
+        }
+      }
+    }
+</script>
+
+<style scoped>
+
+</style>

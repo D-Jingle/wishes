@@ -1,0 +1,33 @@
+{
+  "musicData": [{
+    "title": "独角戏",
+    "artist": "张艺兴",
+    "src": "http://url.mcvmc.com/xiami.php/1776120826.mp3",
+    "pic": "https://y.gtimg.cn/music/photo_new/T002R300x300M0000031MMWz0V7k1g.jpg?max_age=2592000",
+    "lrc": "lrc/我要你.lrc"
+  }, {
+    "title": "sheep",
+    "artist": "张艺兴",
+    "src": "http://www.ytmp3.cn/down/44273.mp3",
+    "pic": "https://y.gtimg.cn/music/photo_new/T002R300x300M000002w9v2U1QksRz.jpg?max_age=2592000",
+    "lrc": "lrc/成都-赵雷.lrc"
+  }, {
+    "title": "一个人",
+    "artist": "张艺兴",
+    "src": "http://www.ytmp3.cn/down/33134.mp3",
+    "pic": "https://y.gtimg.cn/music/photo_new/T002R300x300M000001pmrh74IRUZR.jpg?max_age=2592000",
+    "lrc": "lrc/就是爱你.lrc"
+  }, {
+    "title": "what U need",
+    "artist": "张艺兴",
+    "src": "http://url.mcvmc.com/xiami.php/1776432347.mp3",
+    "pic": "https://y.gtimg.cn/music/photo_new/T002R300x300M000002erIsV4Izhkv.jpg?max_age=2592000",
+    "lrc": "lrc/假如爱有天意.lrc"
+  }, {
+    "title": "张艺兴",
+    "artist": "祈愿",
+    "src": "http://url.mcvmc.com/xiami.php/1795811195.mp3",
+    "pic": "https://y.gtimg.cn/music/photo_new/T002R300x300M000000noD0i1tPu1N.jpg?max_age=2592000",
+    "lrc": "lrc/十年.lrc"
+  }]
+}
