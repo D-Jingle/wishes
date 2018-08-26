@@ -1,34 +1,38 @@
 <template>
   <div class="box">
     <div class="Mcontent">
-      lalalalalallalalalalalalalalalalalalalalalalalla
+      {{item.content}}
     </div>
     <div class="Mcontainer">
       <div class="Mleft">发布人</div>
-      <div class="Mright">渣渣辉</div>
+      <div class="Mright">{{item.guy}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">18888888888</div>
+      <div class="Mright">{{item.phone}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">认领人</div>
-      <div class="Mright">渣渣辉</div>
+      <div class="Mright">{{item.angel.guy}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">18888888888</div>
+      <div class="Mright">{{item.angel.phone}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">截止日期</div>
+      <div class="Mright">{{item.deadline}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">完成状态</div>
       <div class="Mright">
-        已完成待评价
+        待评价
       </div>
     </div>
-    <div class="Mcontainer">
-      <div class="Mleft">志愿时长</div>
-      <div class="Mright">待开发</div>
-    </div>
+    <!--<div class="Mcontainer">-->
+      <!--<div class="Mleft">志愿时长</div>-->
+      <!--<div class="Mright">待开发</div>-->
+    <!--</div>-->
     <div class="Mcontainer">
       <div class="Mleft">评价</div>
       <div class="MpicBox">
@@ -36,7 +40,7 @@
       </div>
     </div>
     <div class="Mfooter" @click="submit">
-      <button>再次发送</button>
+      <button>确认评价</button>
     </div>
   </div>
 </template>
@@ -54,36 +58,66 @@
           this.nowpic[index] = this.acpic[index];
           console.log(this.nowpic);
         },
+        // 请求信息
+        getData(){
+          axios({
+            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+          }).then((response)=>{
+            if(response.data.code == 0){
+              console.log(response);
+              this.item = response.data.data;
+              console.log(this.item);
+            } else {
+              alert("fail");
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
+        },
+
+        // 待写
         submit(){
-
+          console.log(this.index);
+          if(this.index == ''){
+            alert('请点击评价！');
+          } else {
+            axios({
+              url: this.GLOBAL.BASE_URL + 'apis/Home/wish/confirm',
+              method:'post',
+              data:{
+                id: this.id,
+                time: '0',
+                judge: ''
+              }
+            }).then((res)=>{
+              console.log(res);
+              if(res.data.code == 0){
+                alert("success");
+              } else {
+                alert('fail');
+              }
+            }).catch((res)=>{
+                alert('fail');
+            })
+          }
         }
-
       },
       data(){
         return{
           index:'',
-          nowpic:[
-            'static/icon/verygood.png',
-            'static/icon/good.png',
-            'static/icon/ordinary.png',
-            'static/icon/bad.png'
-          ],
-          pic:[
-            'static/icon/verygood.png',
-            'static/icon/good.png',
-            'static/icon/ordinary.png',
-            'static/icon/bad.png'
-          ],
-          acpic:[
-            'static/icon/verygoodactive.png',
-            'static/icon/goodactive.png',
-            'static/icon/ordinaryactive.png',
-            'static/icon/badactive.png'
-          ]
+          item:{},
+          id:'',
+          nowpic:[],
+          pic:[],
+          acpic:[]
         }
       },
       created(){
-        console.log(this.$route.params.Id);
+        this.id = this.$route.params.Id;
+        this.nowpic =  this.$store.state.pic;
+        this.pic = this.$store.state.pic;
+        this.acpic = this.$store.state.acpic;
+        this.getData();
       }
     }
 </script>

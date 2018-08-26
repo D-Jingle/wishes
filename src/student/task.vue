@@ -32,10 +32,6 @@
           },
           {
             index: 2,
-            title: '待确认'
-          },
-          {
-            index: 3,
             title: '已完成'
           }
         ],
@@ -51,10 +47,8 @@
           this.$router.push('/student/task/uncomtask');
         } else if(index == 1){
           this.$router.push('/student/task/remaintask');
-        } else if (index == 3){
+        } else if (index == 2){
           this.$router.push('/student/task/comtask');
-        } else if (index ==2){
-          this.$router.push('/student/task/unconfirm');
         }
       }
     }

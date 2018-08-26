@@ -1,14 +1,14 @@
 <template>
   <div class="box">
     <div class="box">
-      <div class="Bcontainer">
-        <ul class="Bcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'c'">
-          <li class="Bcontainer-li"  @click="tocomdetail(item.id)">
-            <div class="Bcircle">
+      <div class="Gcontainer">
+        <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'c'">
+          <li class="Gcontainer-li"  @click="tocomdetail(item.id)">
+            <div class="Gcircle">
               <div></div>
             </div>
-            <div class="Bcontent">陪伴读报一小时</div>
-            <div class="Bguy">
+            <div class="Gcontent">{{item.content}}</div>
+            <div class="Gguy">
               <button>评价</button>
             </div>
           </li>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
   export default {
     name: "claim",
     data(){
@@ -32,11 +33,15 @@
       },
       getData(){
         axios({
-          url:'https://api.myjson.com/bins/1a85wg',
+          url:this.GLOBAL.BASE_URL + 'apis/Home/wish/tealist',
         }).then((response)=>{
-          console.log(response);
-          this.task = response.data.data.accepted;
-          console.log(this.task);
+          if(response.data.code == 0){
+            console.log(response);
+            this.task = response.data.data.unevaluate;
+            console.log(this.task);
+          } else {
+            alert('fail');
+          }
         }).catch((error)=>{
           console.log(error)
         })

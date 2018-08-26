@@ -34,14 +34,10 @@
             },
             {
               index: 2,
-              title: '待确认'
-            },
-            {
-              index: 3,
               title: '待评价'
             },
             {
-              index: 4,
+              index: 3,
               title: '已完成'
             }
           ],
@@ -57,12 +53,10 @@
             this.$router.push('/teacher/wishlisttea/unclaim');
           } else if (index == 1){
             this.$router.push('/teacher/wishlisttea/claim');
-          } else if (index == 3){
-            this.$router.push('/teacher/wishlisttea/remainclaim');
-          } else if (index == 4){
-            this.$router.push('/teacher/wishlisttea/comclaim');
           } else if (index == 2){
-            this.$router.push('/teacher/wishlisttea/unconfirm');
+            this.$router.push('/teacher/wishlisttea/remainclaim');
+          } else if (index == 3){
+            this.$router.push('/teacher/wishlisttea/comclaim');
           }
         }
       },

@@ -9,9 +9,9 @@
       <div class="gap"></div>
       <div class="text">密码</div>
       <input type="password" v-model="password">
-      <button @click="submit('/student')" class="btn">登陆学生端</button>
-      <button @click="submit('/teacher')" class="btn">登陆教师端</button>
-      <button @click="submit('/admin')" class="btn">登陆管理端</button>
+      <button @click="submit()" class="btn">登陆</button>
+      <!--<button @click="submit('/teacher')" class="btn">登陆教师端</button>-->
+      <!--<button @click="submit('/admin')" class="btn">登陆管理端</button>-->
     </div>
   </div>
 </template>
@@ -21,39 +21,44 @@
       name: "login",
       data(){
         return {
-          account:'',
-          password:''
+          account:'2016224408',
+          password:'Daijing88',
         }
       },
+      created(){
+        console.log(this.$store.state.count);
+      },
       methods:{
-        submit(add){
+        submit(){
           console.log(this.account);
           console.log(this.password);
-          this.$router.push(add);
-          // axios({
-          //   url:'https://api.myjson.com/bins/1a85wg',
-          //   data:{
-          //     account:this.account,
-          //     password:this.password
-          //   },
-          //   method:'post',
-          //   timeout:1000
-          // }).then((response)=>{
-          //   console.log('aaa');
-          //   console.log(response);
-          //   if(response){
-          //     this.$router.push('/student');
-          //   } else if (response){
-          //     this.$router.push('/teacher');
-          //   } else if (response){
-          //     this.$router.push('/teacher');
-          //   } else if (response){
-          //     alert("用户名或密码输入错误，请重新输入！");
-          //   }
-          // }).catch((error)=>{
-          //   console.log(error);
-          //   alert('登陆失败');
-          // })
+          axios({
+            url:'/apis/Home/user/login',
+            data:{
+              account:this.account,
+              password:this.password
+            },
+            method:'post',
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code == 0){
+              if(response.data.data.admin == 3){
+                this.$router.push('/student');
+              } else if (response.data.data.admin == 2){
+                this.$router.push('/teacher');
+              } else if (response.data.data.admin == 1){
+                this.$router.push('/admin');
+              } else {
+                alert("用户名或密码输入错误，请重新输入！");
+              }
+            } else {
+              alert("用户名或密码输入错误，请重新输入！");
+            }
+
+          }).catch((error)=>{
+            console.log(error);
+            alert('登陆失败');
+          })
         }
       },
 

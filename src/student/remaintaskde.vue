@@ -1,15 +1,23 @@
 <template>
   <div class="box">
     <div class="Mcontent">
-      lalalalalallalalalalalalalalalalalalalalalalalla
+      {{item.content}}
     </div>
     <div class="Mcontainer">
-      <div class="Mleft">认领人</div>
-      <div class="Mright">渣渣辉</div>
+      <div class="Mleft">发布人</div>
+      <div class="Mright">{{item.guy}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">18888888888</div>
+      <div class="Mright">{{item.phone}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">认领人</div>
+      <div class="Mright">{{item.angel.guy}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">联系方式</div>
+      <div class="Mright">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
@@ -21,8 +29,32 @@
 <script>
     export default {
       name: "remaintaskde",
+      data(){
+        return{
+          id:0,
+          item:{},
+        }
+      },
+      methods:{
+        getData(){
+          axios({
+            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+          }).then((response)=>{
+            if(response.data.code == 0){
+              console.log(response);
+              this.item = response.data.data;
+              console.log(this.item);
+            } else {
+              alert("fail");
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
+        }
+      },
       created(){
-        console.log(this.$route.params.Id);
+        this.id = this.$route.params.Id;
+        this.getData();
       }
     }
 </script>

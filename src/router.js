@@ -9,17 +9,14 @@ import Info from './student/info.vue'
 import Comdetail from './student/comdetail'
 import WishDetail from './student/wishdetail.vue'
 import ComTask from './student/comtask.vue'
-import UnConfirmStu from './student/unconfirm'
 import UnComTask from './student/uncomtask.vue'
 import RemainTask from './student/remaintask'
 import UnComTaskDe from './student/uncomtaskde'
 import RemainTaskDe from './student/remaintaskde'
-import UnConfirmDeStu from './student/unconfirmde'
 
 import Teacher from './teacher/teacher.vue'
 import WishListTea from './teacher/wishlist.vue'
 import InfoTea from './teacher/info.vue'
-import UnConfirm from './teacher/unconfirm'
 import ComdetailTea from './teacher/comdetail'
 import UnComdetailTea from './teacher/uncomdetail'
 import Claim from './teacher/claim.vue'
@@ -29,7 +26,7 @@ import ComClaim from './teacher/comclaim'
 import Issue from './teacher/issue'
 import RemainClaimDe from './teacher/remainclaimde'
 import UnClaimDe from './teacher/unclaimde'
-import UnConfirmDe from './teacher/unconfirmde'
+import ClaimDe from './teacher/claimde'
 
 import Admin from './admin/admin.vue'
 import WishListAdm from  './admin/wishlist.vue'
@@ -77,11 +74,6 @@ export default new Router({
           component:WishDetail
         },
         {
-          path:'unconfirmde',
-          name:'unconfirmde',
-          component: UnConfirmDeStu
-        },
-        {
           path:'task',
           name:'task',
           component: Task,
@@ -100,11 +92,6 @@ export default new Router({
               path:'remaintask',
               name:'remaintask',
               component: RemainTask
-            },
-            {
-              path:'unconfirm',
-              name:'unconfirm',
-              component:UnConfirmStu
             }
           ]
         },
@@ -156,12 +143,12 @@ export default new Router({
               name:'remainclaim',
               component: RemainClaim
             },
-            {
-              path:'unconfirm',
-              name:'unconfirm',
-              component:UnConfirm
-            }
           ]
+        },
+        {
+          path:'claimde',
+          name:'claimde',
+          component:ClaimDe
         },
         {
           path:'unclaimde',
@@ -193,11 +180,6 @@ export default new Router({
           name:'remainclaimde',
           component: RemainClaimDe
         },
-        {
-          path:'unconfirmde',
-          name:'unconfirmde',
-          component: UnConfirmDe
-        }
       ]
     },
 
@@ -227,10 +209,10 @@ export default new Router({
               component:ComWish
             },
             {
-              path:'uncommonadm',
-              name:'uncommonadm',
-              component:UnCommon
-            },
+              path: 'uncommonadm',
+              name: 'uncommonadm',
+              component: UnCommon
+            }
           ]
         },
         {

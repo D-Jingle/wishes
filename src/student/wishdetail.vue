@@ -14,19 +14,19 @@
     <div class="Mcontainer">
       <div class="Mleft">认领人</div>
       <div class="Mright">
-        <input type="text" placeholder="点击填写" id="guy" v-model="guy">
+        {{guy}}
       </div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
       <div class="Mright">
-        <input type="text" placeholder="点击填写" id="phone" v-model="phone">
+        <input type="text" placeholder="点击填写" id="phone" v-model="phone" v-if="phone == '' ">
+        <div v-if="phone != ''">{{phone}}</div>
       </div>
     </div>
     <div class="Mfooter" @click="submit">
       <button>认   领</button>
     </div>
-    {{guy}}{{phone}}
   </div>
 </template>
 
@@ -39,18 +39,42 @@
           item:{},
           guy:'',
           phone:'',
+          userinfo:{}
         }
       },
       methods:{
         // 获取心愿信息
         getWishDetail(){
           axios({
-            url:this.GLOBAL.BASE_URL + '/wish/info?id=' + this.wishId,
+            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.wishId,
             method:'get'
           }).then((response)=>{
+            if(response.data.code == 0) {
+              console.log(response);
+              this.item = response.data.data;
+              console.log(this.item);
+            } else {
+              alert("fail");
+            }
+          }).catch((response)=>{
             console.log(response);
-            this.item = response.data.data;
-            console.log(this.item);
+          })
+        },
+        // 获取学生信息
+        getUserInfo(){
+          axios({
+            url:this.GLOBAL.BASE_URL + 'apis/Home/user/info',
+            method:'get'
+          }).then((response)=>{
+            if(response.data.code == 0) {
+              console.log(response);
+              this.userInfo = response.data.data;
+              console.log(this.userInfo);
+              this.phone = this.userInfo.phone;
+              this.guy = this.userInfo.guy;
+            } else {
+              alert("fail");
+            }
           }).catch((response)=>{
             console.log(response);
           })
@@ -58,13 +82,13 @@
         // 接受心愿
         submit(){
           axios({
-            url: this.GLOBAL.BASE_URL + '/wish/accept',
+            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/accept',
             method:'post',
-            // data:{
-            //   id: this.data.wishId,
-            //   guy: this.guy,
-            //   phone: this.phone
-            // },
+            data:{
+              id: this.data.wishId,
+              guy: this.guy,
+              phone: this.phone
+            },
           }).then((response)=>{
             console.log(response);
             if(response.data.code == 0){

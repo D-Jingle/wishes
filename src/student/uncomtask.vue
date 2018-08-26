@@ -21,17 +21,21 @@
     name: "comtask",
     data(){
       return{
-        task: {}
+        task: {},
       }
     },
     methods:{
       getData(){
         axios({
-          url:'https://api.myjson.com/bins/1a85wg',
+          url:this.GLOBAL.BASE_URL + 'apis/Home/wish/stulistall',
         }).then((response)=>{
-          console.log(response);
-          this.task = response.data.data.unaccepted;
-          console.log(this.task);
+          if(response.data.code == 0){
+            console.log(response);
+            this.task = response.data.data.undone;
+            console.log(this.task);
+          } else {
+            alert('fail');
+          }
         }).catch((error)=>{
           console.log(error)
         })
@@ -39,12 +43,20 @@
       touncomtaskde(id){
         this.$router.push({name:'uncomtaskde',params:{Id:id}});
       },
-      tocomdetail(){
-        this.$router.push('/student/comdetail');
-      },
       confirm(id){
-        // 留坑待写
-        console.log(id);
+        axios({
+          url:this.GLOBAL.BASE_URL + 'apis/Home/wish/stuconfirm?id=' + id,
+        }).then((response)=>{
+          console.log(response);
+          if(response.data.code == 0){
+            console.log(response);
+            alert('success');
+          } else {
+            alert('fail');
+          }
+        }).catch((error)=>{
+          console.log(error)
+        })
       }
     },
     created(){

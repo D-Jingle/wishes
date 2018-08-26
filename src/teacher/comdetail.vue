@@ -1,28 +1,37 @@
 <template>
   <div class="box">
     <div class="Mcontent">
-      lalalalalallalalalalalalalalalalalalalalalalalla
+      {{item.content}}
     </div>
     <div class="Mcontainer">
       <div class="Mleft">发布人</div>
-      <div class="Mright">渣渣辉</div>
+      <div class="Mright">{{item.guy}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">18888888888</div>
+      <div class="Mright">{{item.phone}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">认领人</div>
-      <div class="Mright">渣渣辉</div>
+      <div class="Mright">{{item.angel.guy}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">18888888888</div>
+      <div class="Mright">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
-      <div class="Mright">
-        <img src="../../static/icon/goodactive.png" alt="">
+      <div class="Mright" v-if="item.quality == 'A'">
+        <img :src="acpic[0]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'B'">
+        <img :src="acpic[1]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'C'">
+        <img :src="acpic[2]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'D'">
+        <img :src="acpic[3]" alt="">
       </div>
     </div>
     <div class="Mcontainer">
@@ -35,8 +44,34 @@
 <script>
     export default {
       name: "comdetailtea",
+      data(){
+        return{
+          id:0,
+          item:{},
+          acpic:[],
+        }
+      },
+      methods:{
+        getData(){
+          axios({
+            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+          }).then((response)=>{
+            if(response.data.code == 0){
+              console.log(response);
+              this.item = response.data.data;
+              console.log(this.item);
+            } else {
+              alert("fail");
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
+        }
+      },
       created(){
-        console.log(this.$route.params.Id);
+        this.id = this.$route.params.Id;
+        this.acpic = this.$store.state.acpic;
+        this.getData();
       }
     }
 </script>

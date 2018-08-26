@@ -19,11 +19,8 @@
       <div class="Mleft">联系方式</div>
       <div class="Mright">18888888888</div>
     </div>
-    <div class="Mcontainer">
-      <div class="Mleft">状态</div>
-      <div class="Mright">
-        待完成
-      </div>
+    <div class="Mfooter" @click="submit">
+      <button>确认完成</button>
     </div>
   </div>
 </template>

@@ -25,25 +25,19 @@
           this.$router.push({name:'wishdetail',params:{Id:id}});
         },
         getData(){
-          // axios({
-          //   url:this.GLOBAL.BASE_URL + '/wish/list',
-          // }).then((response)=>{
-          //   console.log(response);
-          //   this.task = response.data.data.unaccepted;
-          // }).catch((error)=>{
-          //   console.log(error);
-          // })
-
-          axios.get('https://api.myjson.com/bins/1a85wg')
-            .then((response) =>{
+          axios({
+            url:'apis/Home/wish/stulistall',
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code == 0) {
               console.log(response);
-              this.task = response.data.data;
-              console.log(this.task);
-            })
-            .catch((error) =>{
-              console.log(error);
-            })
-
+              this.task = response.data.data.unaccepted;
+            } else {
+              alert('fail');
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
         }
       },
       created(){

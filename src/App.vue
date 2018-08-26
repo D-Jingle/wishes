@@ -15,6 +15,7 @@ export default {
     }
   },
   created(){
+
     // 判断是否登陆，登陆过获取信息到各个端，未登陆到登陆页
     this.$router.push('/login');
   }
@@ -115,6 +116,11 @@ body {
   color: #aaa;
   font-size: .9rem;
   right: 10%;
+}
+.Gguy button{
+  background-color: rgb(11,197,238);
+  color: white;
+  border-radius: 40%;
 }
 .Gguy span{
   color: rgb(11,197,238);

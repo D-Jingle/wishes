@@ -1,36 +1,18 @@
 <template>
   <div class="box">
     <div class="container">
-      <ul class="container-ul">
+      <ul class="container-ul" v-for="(item,index) in task" v-bind:key="index + 'h'">
 
-        <li class="container-li" @click="toremain">
+        <li class="container-li" @click="toremain(item.id)">
           <div class="circle">
             <div></div>
           </div>
-          <div class="content">陪伴读报一小时</div>
-          <div class="guy">
-            <button>分配</button>
+          <div class="content">{{item.content}}</div>
+          <div class="guy" >
+            <button>点击分配</button>
           </div>
         </li>
 
-        <li class="container-li" @click="toremain">
-          <div class="circle">
-            <div></div>
-          </div>
-          <div class="content">陪伴读报一小时</div>
-          <div class="guy">
-            <button>分配</button>
-          </div>
-        </li>
-        <li class="container-li" @click="toremain">
-          <div class="circle">
-            <div></div>
-          </div>
-          <div class="content">陪伴读报一小时</div>
-          <div class="guy">
-            <button>分配</button>
-          </div>
-        </li>
       </ul>
     </div>
   </div>
@@ -40,9 +22,32 @@
     export default {
       name: "unallot",
       methods:{
-          toremain(){
-            this.$router.push('/admin/remainwishes');
-          }
+        toremain(id){
+          this.$router.push({name:'remainwishes',params:{Id:id}});
+        },
+        getData() {
+          axios({
+            url:this.GLOBAL.BASE_URL + '/apis/Home/wish/admlist',
+          }).then((response) => {
+            if (response.data.code == 0) {
+              console.log(response);
+              this.task = response.data.data.undone;
+              console.log(this.task);
+            } else {
+              alert('fail');
+            }
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
+      },
+      data(){
+        return{
+          task:[]
+        }
+      },
+      created(){
+        this.getData();
       }
     }
 </script>

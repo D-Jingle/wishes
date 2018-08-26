@@ -3,8 +3,7 @@
 </template>
 
 <script>
-  const BASE_URL = 'http://wish.jblog.info/v1';
-
+  const BASE_URL = '/';
     export default {
         BASE_URL
     }
