@@ -67,7 +67,7 @@ body {
 }
 .Mcontent{
   padding: 1rem;
-  height: 7rem;
+  min-height: 7rem;
   background-color: white;
 }
 .Mfooter{
@@ -90,6 +90,7 @@ body {
 
 }
 .Gcontainer-li{
+  height: 1.2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -109,7 +110,9 @@ body {
   border-radius: 50%;
 }
 .Gcontent{
-
+  height: 100%;
+  overflow: hidden;
+  width: 60%;
 }
 .Gguy{
   position: absolute;
@@ -136,10 +139,12 @@ body {
   flex-direction: row;
   align-items: center;
   margin: 2rem 0;
+  height: 1.2rem;
 }
 .Bcircle{
-  flex-grow: 2;
+  /*flex-grow: 2;*/
   display: flex;
+  padding-left: 7%;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -151,7 +156,11 @@ body {
   border-radius: 50%;
 }
 .Bcontent{
-  flex-grow: 5;
+  /*flex-grow: 5;*/
+  margin: 0 5%;
+  height: 100%;
+  width: 53%;
+  overflow: hidden;
 }
 .Bguy{
   flex-grow: 2;
@@ -162,5 +171,61 @@ body {
   background-color: rgb(11,197,238);
   color: white;
   border-radius: 40%;
+}
+
+
+
+.Acontainer{
+  padding: 1rem 0;
+}
+.container-ul{
+
+}
+.Acontainer-li{
+  height: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2rem 0;
+}
+.Acircle{
+  /*flex-grow: 2;*/
+  /*width: 20%;*/
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 7%;
+}
+.Acircle div{
+  width: .5rem;
+  height: .5rem;
+  background-color: rgb(11,197,238);;
+  border-radius: 50%;
+}
+.Acontent{
+  margin: 0 5%;
+  height: 100%;
+  width: 53%;
+  overflow: hidden;
+}
+.Aguy{
+  /*flex-grow: 2;*/
+  width: 29%;
+  color: #aaa;
+  font-size: .9rem;
+}
+.Aguy button{
+  background-color: rgb(11,197,238);
+  color: white;
+  border-radius: 40%;
+}
+.none{
+  height: 30rem;
+  width: 100%;
+  text-align: center;
+  line-height: 30rem;
+  color: #bbb;
+  font-size: 2rem;
 }
 </style>

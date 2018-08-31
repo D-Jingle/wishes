@@ -1,6 +1,6 @@
 <template>
-<div class="box">
   <div class="box">
+    <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="Gcontainer">
       <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'b'">
         <li class="Gcontainer-li"  @click="touncomdetail(item.id)">
@@ -10,12 +10,9 @@
           <div class="Gcontent">{{item.content}}</div>
           <div class="Gguy">待完成</div>
         </li>
-
       </ul>
-
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -23,7 +20,8 @@
       name: "claim",
       data(){
         return {
-          task:[]
+          task:[],
+          isData: true
         }
       },
       methods:{
@@ -38,6 +36,9 @@
               console.log(response);
               this.task = response.data.data.undone;
               console.log(this.task);
+              if(this.task.length == 0){
+                this.isData = false;
+              }
             } else {
               alert('fail');
             }

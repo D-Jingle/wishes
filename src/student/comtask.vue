@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="Gcontainer">
       <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'un'">
         <li class="Gcontainer-li"  @click="tocomdetail(item.id)">
@@ -20,17 +21,21 @@
       data(){
           return{
             task: {},
+            isData: true
           }
       },
       methods:{
         getData(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/stulistall',
+            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/stulist',
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.task = response.data.data.done;
               console.log(this.task);
+              if(this.task.length == 0){
+                this.isData = false;
+              }
             } else {
               alert('fail');
             }

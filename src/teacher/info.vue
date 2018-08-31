@@ -2,11 +2,14 @@
   <div class="box">
     <div class="Mcontainer">
       <div class="Mleft">姓名</div>
-      <div class="Mright">{{userinfo.name}}</div>
+      <!--<div class="Mright" v-if="userinfo.nickname == ''">-->
+        <!--<input type="text" placeholder="请输入姓名" v-model="name" style="text-align: right">-->
+      <!--</div>-->
+      <div class="Mright">{{userinfo.nickname}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">工号</div>
-      <div class="Mright">{{userinfo.acc}}</div>
+      <div class="Mright">{{userinfo.account}}</div>
     </div>
     <!--<div class="Mcontainer">-->
       <!--<div class="Mleft">时间</div>-->
@@ -14,13 +17,13 @@
     <!--</div>-->
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright" v-if="userinfo.phone != null">{{userinfo.phone}}</div>
-      <div class="Mright" v-if="userinfo.phone == null">
+      <div class="Mright" v-if="userinfo.phone != ''">{{userinfo.phone}}</div>
+      <div class="Mright" v-if="userinfo.phone == ''">
         <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right">
       </div>
     </div>
-    <div class="Mfooter" @click="submit" v-if="userinfo.phone == null">
-      <button @click="submit">提交联系方式</button>
+    <div class="Mfooter" @click="submit" v-if="userinfo.phone == ''">
+      <button>提交联系方式</button>
     </div>
   </div>
 </template>
@@ -32,6 +35,7 @@
       return{
         userinfo:{},
         phone:'',
+        name:''
       }
     },
     created(){
@@ -40,7 +44,7 @@
     methods:{
       getData(){
         axios({
-          url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_phone',
+          url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
         }).then((response)=>{
           console.log(response);
           if(response.data.code ==0){
@@ -57,9 +61,9 @@
       submit(){
         if(this.phone.length == 11){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/user/alter',
+            url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_register',
             data:{
-              account:this.userinfo.acc,
+              account:this.userinfo.account,
               phone:this.phone
             },
             method:'post',
@@ -67,8 +71,9 @@
             console.log(response);
             if(response.data.code == 0){
               alert('提交成功');
+              this.$router.go(-1);
             } else {
-              alert('提交失败');
+              alert(response.data.message);
             }
           }).catch((error)=>{
             console.log(error);

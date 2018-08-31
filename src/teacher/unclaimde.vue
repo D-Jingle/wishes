@@ -17,12 +17,13 @@
         待认领
       </div>
     </div>
-    <div class="Mfooter" @click="submit()">
-      <button>再次发送</button>
-    </div>
-    <div class="Mfooter2" @click="cancel()">
+    <!--<div class="Mfooter" @click="resend()" >-->
+      <!--<button>再次发送</button>-->
+    <!--</div>-->
+    <div class="Mfooter" @click="cancel()">
       <button>取消心愿</button>
     </div>
+
 
     <van-dialog
       v-model="show"
@@ -43,7 +44,11 @@
 <script>
   import { Dialog } from 'vant';
   import { Field } from 'vant';
+  import { Popup } from 'vant';
   import Vue from 'vue';
+  import { DatetimePicker } from 'vant';
+  Vue.use(DatetimePicker);
+  Vue.use(Popup);
   Vue.use(Dialog);
   Vue.use(Field);
 
@@ -55,6 +60,7 @@
           id:'',
           item:{},
           show: false,
+          show2: false,
           username: '',
           password: ''
         }
@@ -65,12 +71,38 @@
       },
       methods:{
         confirm(){
-          console.log(this.reason);
+          if(this.reason == ''){
+            alert('请输入取消原因！');
+          } else {
+            axios({
+              url: this.GLOBAL.BASE_URL + 'apis/Home/wish/cancel',
+              method:'post',
+              data:{
+                id:this.id,
+                reason:this.reason
+              }
+            }).then((response)=>{
+              console.log(this.id);
+              console.log(response);
+              if(response.data.code == 0){
+                alert('success');
+                this.$router.go(-1);
+              } else {
+                alert("fail");
+              }
+            }).catch((error)=>{
+              console.log(error);
+            })
+          }
+        },
+        resend(){
+          console.log(this.id);
+          let date = new Date();
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/cancel',
+            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/resend',
             method:'post',
             data:{
-              id:this.id,
+              time: date,
               reason:this.reason
             }
           }).then((response)=>{
@@ -85,15 +117,9 @@
             console.log(error);
           })
         },
-
-        submit(){
-          console.log(this.id);
-
-        },
         cancel(){
           this.show = true;
           console.log(this.id);
-
         },
         getData(){
           axios({
@@ -118,25 +144,12 @@
   .Mfooter{
     position: absolute;
     bottom: 7rem;
-    width: 45%;
+    width: 100%;
     height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: dodgerblue;
-    border-radius: 10%;
-    color: white;
-  }
-  .Mfooter2{
-    position: absolute;
-    right: 0;
-    bottom: 7rem;
-    width: 45%;
-    height: 2.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ccc;
     border-radius: 10%;
     color: white;
   }

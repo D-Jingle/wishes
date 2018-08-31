@@ -120,7 +120,7 @@ export default new Router({
       children:[
         {
           path:'wishlisttea',
-          name:'wishlist',
+          name:'wishlisttea',
           component: WishListTea,
           children:[
             {

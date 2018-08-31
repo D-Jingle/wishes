@@ -41,12 +41,29 @@
               title: '已完成'
             }
           ],
-          active: 0,
+          active:0,
         }
       },
       methods:{
         toissue(){
-          this.$router.push('/teacher/issue');
+          axios({
+            url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code ==0){
+              this.userinfo = response.data.data;
+              console.log(this.userinfo);
+              if(this.userinfo.phone == ''){
+                alert ("请至个人信息页面填写信息后再发布心愿！")
+              } else {
+                this.$router.push('/teacher/issue');
+              }
+            } else {
+              alert('fail');
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
         },
         onclick(index,title){
           if(index == 0){
@@ -63,7 +80,7 @@
       created(){
         this.$router.push('/teacher/wishlisttea/unclaim');
       },
-      name: "wishlist"
+      name: "wishlist",
     }
 </script>
 

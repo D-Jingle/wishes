@@ -14,14 +14,14 @@
     <div class="Mcontainer">
       <div class="Mleft">认领人</div>
       <div class="Mright">
-        {{guy}}
+        {{userinfo.name}}
       </div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
       <div class="Mright">
-        <input type="text" placeholder="点击填写" id="phone" v-model="phone" v-if="phone == '' ">
-        <div v-if="phone != ''">{{phone}}</div>
+        <!--<input type="text" placeholder="点击填写" id="phone" v-model="phone" v-if="isPhone" >-->
+        <div>{{phone}}</div>
       </div>
     </div>
     <div class="Mfooter" @click="submit">
@@ -35,9 +35,9 @@
       name: "wishdetail",
       data(){
         return{
+          isPhone:false,
           wishId:'',
           item:{},
-          guy:'',
           phone:'',
           userinfo:{}
         }
@@ -61,22 +61,21 @@
           })
         },
         // 获取学生信息
-        getUserInfo(){
+        getUserinfo(){
+          console.log('aaa');
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/user/info',
-            method:'get'
+            url: this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
           }).then((response)=>{
-            if(response.data.code == 0) {
+            if(response.data.code == 0){
               console.log(response);
-              this.userInfo = response.data.data;
-              console.log(this.userInfo);
-              this.phone = this.userInfo.phone;
-              this.guy = this.userInfo.guy;
+              this.userinfo = response.data.data;
+              this.phone = this.userinfo.phone;
+              console.log(this.userinfo);
             } else {
               alert("fail");
             }
-          }).catch((response)=>{
-            console.log(response);
+          }).catch((error)=>{
+            console.log(error);
           })
         },
         // 接受心愿
@@ -85,8 +84,8 @@
             url: this.GLOBAL.BASE_URL + 'apis/Home/wish/accept',
             method:'post',
             data:{
-              id: this.data.wishId,
-              guy: this.guy,
+              id: this.wishId,
+              guy: this.userinfo.name,
               phone: this.phone
             },
           }).then((response)=>{
@@ -103,9 +102,13 @@
         }
       },
       created(){
+        if(this.phone == ''){
+          this.isPhone = false;
+        }
         this.wishId = this.$route.params.Id;
         console.log(this.wishId);
         this.getWishDetail();
+        this.getUserinfo();
       }
     }
 </script>

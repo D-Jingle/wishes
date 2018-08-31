@@ -18,9 +18,9 @@
       [Tab.name]: Tab,
       [Tabs.name]: Tabs,
     },
-    name: "task",
     data(){
       return{
+        alive: true,
         tab:[
           {
             index: 0,

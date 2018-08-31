@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="box">
       <div class="Gcontainer">
         <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'c'">
@@ -24,7 +25,8 @@
     name: "claim",
     data(){
       return{
-        task:{}
+        task:{},
+        isData: true
       }
     },
     methods:{
@@ -39,6 +41,9 @@
             console.log(response);
             this.task = response.data.data.unevaluate;
             console.log(this.task);
+            if(this.task.length == 0){
+              this.isData = false;
+            }
           } else {
             alert('fail');
           }

@@ -2,7 +2,8 @@
     <div class="box">
       <router-view></router-view>
       <van-tabbar v-model="active">
-        <van-tabbar-item icon="shop" to="/teacher/wishlisttea">
+
+        <van-tabbar-item icon="shop" to="/teacher/wishlisttea/unclaim">
           <span>心愿列表</span>
           <img
             slot="icon"
@@ -10,6 +11,7 @@
             :src="props.active ? icon[0].active : icon[0].normal"
           >
         </van-tabbar-item>
+
         <van-tabbar-item icon="shop" to="/teacher/infotea">
           <span>个人列表</span>
           <img
@@ -50,7 +52,7 @@
         }
       },
       created(){
-        this.$router.push('teacher/wishlisttea');
+        this.$router.push('/teacher/wishlisttea');
       }
     }
 </script>

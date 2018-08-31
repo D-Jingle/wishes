@@ -16,7 +16,7 @@ export default new Vuex.Store({  //全局变量
       'static/icon/goodactive.png',
       'static/icon/ordinaryactive.png',
       'static/icon/badactive.png'
-    ]
+    ],
   },
   mutations: {
     // add(state,num){

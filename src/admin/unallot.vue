@@ -1,14 +1,16 @@
 <template>
   <div class="box">
-    <div class="container">
-      <ul class="container-ul" v-for="(item,index) in task" v-bind:key="index + 'h'">
+    <div class="none" v-if="!isData"> 暂无数据</div>
 
-        <li class="container-li" @click="toremain(item.id)">
-          <div class="circle">
+    <div class="Acontainer">
+      <ul class="Acontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'h'">
+
+        <li class="Acontainer-li" @click="toremain(item.id)">
+          <div class="Acircle">
             <div></div>
           </div>
-          <div class="content">{{item.content}}</div>
-          <div class="guy" >
+          <div class="Acontent">{{item.content}}</div>
+          <div class="Aguy" >
             <button>点击分配</button>
           </div>
         </li>
@@ -27,13 +29,15 @@
         },
         getData() {
           axios({
-            url:this.GLOBAL.BASE_URL + '/apis/Home/wish/admlist',
+            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/admlist',
           }).then((response) => {
             if (response.data.code == 0) {
               console.log(response);
-              this.task = response.data.data.undone;
+              this.task = response.data.data.unaccepted;
               console.log(this.task);
-            } else {
+              if(this.task.length == 0){
+                this.isData = false;
+              }} else {
               alert('fail');
             }
           }).catch((error) => {
@@ -43,7 +47,8 @@
       },
       data(){
         return{
-          task:[]
+          task:[],
+          isData: true
         }
       },
       created(){

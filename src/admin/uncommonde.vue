@@ -1,29 +1,32 @@
 <template>
-  <div class="Mcontent">
-    {{item.content}}
-  </div>
-  <div class="Mcontainer">
-    <div class="Mleft">发布人</div>
-    <div class="Mright">{{item.guy}}</div>
-  </div>
-  <div class="Mcontainer">
-    <div class="Mleft">联系方式</div>
-    <div class="Mright">{{item.phone}}</div>
-  </div>
-  <div class="Mcontainer">
-    <div class="Mleft">认领人</div>
-    <div class="Mright">{{item.angel.guy}}</div>
-  </div>
-  <div class="Mcontainer">
-    <div class="Mleft">联系方式</div>
-    <div class="Mright">{{item.angel.phone}}</div>
-  </div>
-  <div class="Mcontainer">
-    <div class="Mleft">完成质量</div>
-    <div class="Mright">
-      待评价
+  <div class="box">
+    <div class="Mcontent">
+      {{item.content}}
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">发布人</div>
+      <div class="Mright">{{item.guy}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">联系方式</div>
+      <div class="Mright">{{item.phone}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">认领人</div>
+      <div class="Mright">{{item.angel.guy}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">联系方式</div>
+      <div class="Mright">{{item.angel.phone}}</div>
+    </div>
+    <div class="Mcontainer">
+      <div class="Mleft">完成质量</div>
+      <div class="Mright">
+        待评价
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>

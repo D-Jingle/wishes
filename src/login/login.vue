@@ -1,18 +1,30 @@
 <template>
   <div>
-    <div class="pic">
-      <img src="../../static/img/111.jpg" alt="">
+    <!--<div class="pic">-->
+      <!--<img src="../../static/img/111.jpg" alt="">-->
+    <!--</div>-->
+
+
+    <div class="login">
+      <div class="welcome"><img src="../../static/img/welcome.png"></div>
+      <div class="login-form">
+        <div class="login-inp"><label>登录</label><input type="text" placeholder="" v-model="account"></div>
+        <div class="login-inp"><label>密码</label><input type="password" placeholder="" v-model="password"></div>
+        <div class="login-inp"><div @click="submit()">立即登录</div></div>
+      </div>
     </div>
-    <div class="container">
-      <div class="text">用户名</div>
-      <input type="text" v-model="account">
-      <div class="gap"></div>
-      <div class="text">密码</div>
-      <input type="password" v-model="password">
-      <button @click="submit()" class="btn">登陆</button>
-      <!--<button @click="submit('/teacher')" class="btn">登陆教师端</button>-->
-      <!--<button @click="submit('/admin')" class="btn">登陆管理端</button>-->
-    </div>
+
+    <!--<div class="container">-->
+      <!--<div class="text">用户名</div>-->
+      <!--<input type="text" v-model="account">-->
+      <!--<div class="gap"></div>-->
+      <!--<div class="text">密码</div>-->
+      <!--<input type="password" v-model="password">-->
+      <!--<button @click="submit()" class="btn">登陆</button>-->
+      <!--&lt;!&ndash;<button @click="submit('/teacher')" class="btn">登陆教师端</button>&ndash;&gt;-->
+      <!--&lt;!&ndash;<button @click="submit('/admin')" class="btn">登陆管理端</button>&ndash;&gt;-->
+    <!--</div>-->
+
   </div>
 </template>
 
@@ -21,17 +33,18 @@
       name: "login",
       data(){
         return {
-          account:'2016224408',
-          password:'Daijing88',
+          account:'user',
+          password:'1',
         }
       },
       created(){
         console.log(this.$store.state.count);
       },
       methods:{
-        submit(){
+        submit(add){
           console.log(this.account);
           console.log(this.password);
+          // this.$router.push(add);
           axios({
             url:'/apis/Home/user/login',
             data:{
@@ -90,5 +103,16 @@
     background-color: dodgerblue;
     margin-top: 2rem;
   }
+
+
+  .login{width:100%;height:100%;background:url('../../static/img/login-bg.png') no-repeat;background-size:cover;position:fixed;z-index:-10;}
+  .welcome{width:100%;margin:25% 0;}
+  .welcome img{width:100%;}
+  .login-inp{margin:0 30px 15px 30px;border:1px solid #fff;border-radius:25px;}
+  .login-inp label{width:4em;text-align:center;display:inline-block;color:#fff;}
+  .login-inp input{line-height:40px;color:#fff;background-color:transparent;border:none;outline: none;}
+  .login-inp div{display:block;width:100%;text-align:center;line-height:40px;color:#fff;font-size:16px;letter-spacing:5px;}
+  .login-txt{text-align:center;color:#fff;}
+  .login-txt a{color:#fff;padding:0 5px;}
 
 </style>

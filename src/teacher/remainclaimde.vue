@@ -17,7 +17,8 @@
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-      <div class="Mright">{{item.angel.phone}}</div>
+
+      <div class="Mright" v-if="">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">截止日期</div>
@@ -78,21 +79,31 @@
         // 待写
         submit(){
           console.log(this.index);
-          if(this.index == ''){
-            alert('请点击评价！');
+          if(this.index == '' && this.index != 0){
+            alert('请点击表情进行评价！');
           } else {
+            if (this.index ==0 ){
+              this.judge = 'A';
+            } else if (this.index ==1 ){
+              this.judge = 'B';
+            } else if (this.index ==2 ){
+              this.judge = 'C';
+            } else if (this.index ==3 ){
+              this.judge = 'D';
+            };
             axios({
               url: this.GLOBAL.BASE_URL + 'apis/Home/wish/confirm',
               method:'post',
               data:{
                 id: this.id,
                 time: '0',
-                judge: ''
+                judge: this.judge
               }
             }).then((res)=>{
               console.log(res);
               if(res.data.code == 0){
                 alert("success");
+                this.$router.go(-1);
               } else {
                 alert('fail');
               }
@@ -109,7 +120,8 @@
           id:'',
           nowpic:[],
           pic:[],
-          acpic:[]
+          acpic:[],
+          judge:''
         }
       },
       created(){

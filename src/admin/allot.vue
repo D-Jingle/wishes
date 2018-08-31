@@ -1,14 +1,16 @@
 <!--待完成-->
 <template>
 <div class="box">
-  <div class="container">
-    <ul class="container-ul" v-for="(item,index) in task" :key="index + 'i'">
-      <li class="container-li" @click="towishes(item.id)">
-        <div class="circle">
+  <div class="none" v-if="!isData"> 暂无数据</div>
+
+  <div class="Acontainer">
+    <ul class="Acontainer-ul" v-for="(item,index) in task" :key="index + 'i'">
+      <li class="Acontainer-li" @click="towishes(item.id)">
+        <div class="Acircle">
           <div></div>
         </div>
-        <div class="content">{{item.content}}</div>
-        <div class="guy">接受人：<span @click.stop="touserinfo(item.angel_id)">代靖</span></div>
+        <div class="Acontent">{{item.content}}</div>
+        <div class="Aguy">接受人：<span @click.stop="touserinfo(item.angel_id)">代靖</span></div>
       </li>
     </ul>
   </div>
@@ -20,7 +22,8 @@
       name: "allot",
       data(){
         return{
-          task:[]
+          task:[],
+          isData: true
         }
       },
       created(){
@@ -35,7 +38,9 @@
               console.log(response);
               this.task = response.data.data.undone;
               console.log(this.task);
-            } else {
+              if(this.task.length == 0){
+                this.isData = false;
+              }} else {
               alert('fail');
             }
           }).catch((error)=>{

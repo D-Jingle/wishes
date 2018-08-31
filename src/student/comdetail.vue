@@ -21,8 +21,17 @@
     </div>
     <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
-      <div class="Mright">
-        <img src="../../static/icon/goodactive.png" alt="">
+      <div class="Mright" v-if="item.quality == 'A'">
+        <img :src="acpic[0]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'B'">
+        <img :src="acpic[1]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'C'">
+        <img :src="acpic[2]" alt="">
+      </div>
+      <div class="Mright" v-if="item.quality == 'D'">
+        <img :src="acpic[3]" alt="">
       </div>
     </div>
   </div>

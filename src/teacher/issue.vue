@@ -2,11 +2,11 @@
   <div class="box">
     <div class="box" :item="item">
       <div class="Mcontent">
-        <textarea placeholder="请输入内容" v-model="content" style="height: 100%; width: 100%;"></textarea>
+        <textarea placeholder="请输入内容" v-model="content"></textarea>
       </div>
       <div class="Mcontainer">
         <div class="Mleft">发布人</div>
-        <div class="Mright">{{userinfo.name}}</div>
+        <div class="Mright">{{userinfo.nickname}}</div>
       </div>
       <div class="Mcontainer">
         <div class="Mleft">联系方式</div>
@@ -20,11 +20,10 @@
         <van-popup v-model="show" position="bottom">
           <van-datetime-picker
             v-model="currentDate"
-            type="date"
+            type="datetime"
             :min-date="minDate"
             :title="'选择时间'"
             @confirm="confirm"
-            @change="change"
           />
         </van-popup>
       </div>
@@ -62,12 +61,15 @@
         //   console.log(picker.getColumnValue(0));
         // },
         confirm(value){
-          let date = new Date(value)
+          let date = new Date(value);
           console.log(date.getFullYear())
           console.log(parseInt(date.getMonth())+1)
-          console.log(date.getDate())
+          console.log(date.getDate());
+          console.log(date.getHours());
+          console.log(date.getMinutes());
+          console.log(date.getDate());
           this.deadline = value;
-          this.time = date.getFullYear() + '-' + (parseInt(date.getMonth())+1) + '-' + date.getDate();
+          this.time = date.getFullYear() + '-' + (parseInt(date.getMonth())+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
           this.show = false;
           console.log(this.deadline);
         },
@@ -81,7 +83,7 @@
         // 请求发布人信息
         getguy(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/user/info',
+            url:this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
             method:'get',
           }).then((response)=>{
             console.log(response);
@@ -96,38 +98,51 @@
           })
         },
         // 发布信息
-        getWishDetail(){
-          axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/pub',
-            method:'post',
-            data:{
-              content: this.content,
-              guy:this.userinfo.name,
-              deadline: this.deadline,
-              phone:this.userinfo.phone
-            },
-          }).then((response)=>{
-            if(response.data.code == 0){
-              alert('success');
-            } else {
-              alert('fail');
-            }
-          }).catch((response)=>{
-            console.log(response);
-          })
-        },
         submit(){
-          console.log(this.content);
-        }
+          if(this.content == '' || this.deadline == ''){
+            alert('请完善内容或填写截止时间');
+          } else {
+            axios({
+              url:this.GLOBAL.BASE_URL + 'apis/Home/wish/pub',
+              method:'post',
+              data:{
+                content: this.content,
+                guy:this.userinfo.nickname,
+                deadline: this.deadline,
+                phone:this.userinfo.phone
+              },
+            }).then((response)=>{
+              console.log(response);
+              console.log()
+              if(response.data.code == 0){
+                alert('success');
+                this.$router.go(-1);
+              } else {
+                alert('fail');
+              }
+            }).catch((response)=>{
+              console.log(response);
+            })
+          }
+
+        },
+        // submit(){
+        //   console.log(this.content);
+        // }
       },
       created(){
         // 请求发布人信息
         this.getguy();
-        this.getWishDetail();
+        // this.getWishDetail();
       }
     }
 </script>
 
 <style scoped>
+  textarea{
+    /*height: 100%;/*/
+    width: 100%;
+    min-height: 7rem;
+  }
 
 </style>

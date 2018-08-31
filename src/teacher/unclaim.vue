@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="Bcontainer">
       <ul class="Bcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'e'">
 
@@ -8,9 +9,9 @@
             <div></div>
           </div>
           <div class="Bcontent">{{item.content}}</div>
-          <div class="Bguy">
-            <button @click="resend(item.id)">再次发送</button>
-          </div>
+          <!--<div class="Bguy">-->
+            <!--<button @click="resend(item.id)">再次发送</button>-->
+          <!--</div>-->
           <div class="Bguy">
             <button @click="resend(item.id)">取消心愿</button>
           </div>
@@ -26,7 +27,9 @@
       name: "unclaim",
       data(){
         return {
-          task:[]
+          task:[],
+          isData: true
+
         }
       },
       methods:{
@@ -38,6 +41,9 @@
               console.log(response);
               this.task = response.data.data.unaccepted;
               console.log(this.task);
+              if(this.task.length == 0){
+                this.isData = false;
+              }
             } else {
               alert('fail');
             }
@@ -66,6 +72,12 @@
       },
       created(){
         this.getData();
+        this.$route.params.active = 0;
+        console.log(this.$route.params.active);
+
+        // if(this.$route.params.active){
+        //   this.$route.params.active = 0;
+        // }
       }
     }
 </script>

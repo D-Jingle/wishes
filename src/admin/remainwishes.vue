@@ -1,9 +1,6 @@
 <template>
 <div class="box">
   <div class="Mcontent">
-    lalalalalallalalalalalalalalalalalalalalalalalla
-  </div>
-  <div class="Mcontent">
     {{item.content}}
   </div>
   <div class="Mcontainer">
@@ -34,23 +31,24 @@
           id:'',
           acc:'',
           userinfo:{},
-          tel:''
+          tel:'',
+          item:{}
         }
       },
       methods:{
         submit(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/admchearch',
+            url:this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
             method:'post',
             data:{
-              angel_id:this.acc
+              account: this.acc
             }
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.userinfo = response.data.data;
               console.log(this.userinfo);
-              this.tel = this.userinfo.angel_phone;
+              this.tel = this.userinfo.phone;
 
               axios({
                 url: this.GLOBAL.BASE_URL + 'apis/Home/wish/admassign',
@@ -58,24 +56,24 @@
                 data:{
                   id:this.id,
                   angel_id : this.acc,
-                  angel_guy : this.userinfo.angel_guy,
+                  angel_guy : this.userinfo.name,
                   angel_phone : this.tel
                 }
               }).then((res)=>{
+                console.log(res)
                 if(res.data.code == 0){
                   console.log(res);
                   alert("success");
-                  this.$router.push(-1);
+                  this.$router.go(-1);
                 } else {
-                  alert('fail');
+                  alert('fail！');
                 }
               }).catch((error)=>{
                 console.log(error);
                 alert('fail');
               })
-
             } else {
-              alert('fail');
+              alert(response.data.message);
             }
           }).catch((error)=>{
             console.log(error)

@@ -23,6 +23,9 @@
       <div class="Mleft">完成质量</div>
       <div class="Mright">待完成</div>
     </div>
+    <div class="Mfooter" @click="submit">
+      <button @click="confirm">确认完成</button>
+    </div>
   </div>
 </template>
 
@@ -33,9 +36,28 @@
         return{
           id:0,
           item:{},
+          userinfo:{}
         }
       },
       methods:{
+        confirm(){
+
+          axios({
+            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/stuconfirm?id=' + this.id,
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code == 0){
+              console.log(response);
+              alert('success');
+              this.$router.go(-1);
+            } else {
+              alert('fail');
+            }
+          }).catch((error)=>{
+            console.log(error)
+          })
+        },
+
         getData(){
           axios({
             url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
