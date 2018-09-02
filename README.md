@@ -1,6 +1,16 @@
 # wishes2
 
-> A Vue.js project
+> 相益
+
+## 技术栈
+
+> Vue
+
+> Vue Router
+
+> Vue Store
+
+> Webpack
 
 ## Build Setup
 
