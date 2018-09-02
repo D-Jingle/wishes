@@ -40,14 +40,14 @@
       methods:{
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+            url: this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.id,
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.item = response.data.data;
               console.log(this.item);
             } else {
-              alert("fail");
+              alert("请求失败");
             }
           }).catch((error)=>{
             console.log(error);

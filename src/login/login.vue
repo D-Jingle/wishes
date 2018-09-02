@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!--<div class="pic">-->
-      <!--<img src="../../static/img/111.jpg" alt="">-->
-    <!--</div>-->
-
-
     <div class="login">
       <div class="welcome"><img src="../../static/img/welcome.png"></div>
       <div class="login-form">
@@ -13,18 +8,16 @@
         <div class="login-inp"><div @click="submit()">立即登录</div></div>
       </div>
     </div>
-
     <!--<div class="container">-->
       <!--<div class="text">用户名</div>-->
       <!--<input type="text" v-model="account">-->
       <!--<div class="gap"></div>-->
       <!--<div class="text">密码</div>-->
       <!--<input type="password" v-model="password">-->
-      <!--<button @click="submit()" class="btn">登陆</button>-->
-      <!--&lt;!&ndash;<button @click="submit('/teacher')" class="btn">登陆教师端</button>&ndash;&gt;-->
-      <!--&lt;!&ndash;<button @click="submit('/admin')" class="btn">登陆管理端</button>&ndash;&gt;-->
+      <!--<button @click="submit('/student')" class="btn">登陆</button>-->
+      <!--<button @click="submit('/teacher')" class="btn">登陆教师端</button>-->
+      <!--<button @click="submit('/admin')" class="btn">登陆管理端</button>-->
     <!--</div>-->
-
   </div>
 </template>
 
@@ -33,8 +26,8 @@
       name: "login",
       data(){
         return {
-          account:'user',
-          password:'1',
+          account:'',
+          password:'',
         }
       },
       created(){
@@ -42,11 +35,11 @@
       },
       methods:{
         submit(add){
-          console.log(this.account);
-          console.log(this.password);
+          // console.log(this.account);
+          // console.log(this.password);
           // this.$router.push(add);
           axios({
-            url:'/apis/Home/user/login',
+            url:this.GLOBAL.BASE_URL + 'Home/user/login',
             data:{
               account:this.account,
               password:this.password
@@ -67,7 +60,6 @@
             } else {
               alert("用户名或密码输入错误，请重新输入！");
             }
-
           }).catch((error)=>{
             console.log(error);
             alert('登陆失败');

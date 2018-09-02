@@ -20,6 +20,10 @@
       <div class="Mright">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
+      <div class="Mleft">截止日期</div>
+      <div class="Mright">{{item.deadline}}</div>
+    </div>
+    <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
       <div class="Mright">
         待评价
@@ -41,14 +45,14 @@
       methods:{
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+            url: this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.id,
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.item = response.data.data;
               console.log(this.item);
             } else {
-              alert("fail");
+              alert("失败！");
             }
           }).catch((error)=>{
             console.log(error);

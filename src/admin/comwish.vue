@@ -31,7 +31,7 @@
       methods:{
         getData(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/admlist',
+            url: this.GLOBAL.BASE_URL + 'Home/wish/admlist',
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
@@ -40,7 +40,7 @@
               if(this.task.length == 0){
                 this.isData = false;
               }} else {
-              alert('fail');
+              alert('请求失败');
             }
           }).catch((error)=>{
             console.log(error)

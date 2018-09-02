@@ -12,6 +12,10 @@
       <div class="Mright">{{item.phone}}</div>
     </div>
     <div class="Mcontainer">
+      <div class="Mleft">截止日期</div>
+      <div class="Mright">{{item.deadline}}</div>
+    </div>
+    <div class="Mcontainer">
       <div class="Mleft">状态</div>
       <div class="Mright">
         待认领
@@ -75,7 +79,7 @@
             alert('请输入取消原因！');
           } else {
             axios({
-              url: this.GLOBAL.BASE_URL + 'apis/Home/wish/cancel',
+              url: this.GLOBAL.BASE_URL + 'Home/wish/cancel',
               method:'post',
               data:{
                 id:this.id,
@@ -99,7 +103,7 @@
           console.log(this.id);
           let date = new Date();
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/resend',
+            url: this.GLOBAL.BASE_URL + 'Home/wish/resend',
             method:'post',
             data:{
               time: date,
@@ -123,14 +127,14 @@
         },
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+            url: this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.id,
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.item = response.data.data;
               console.log(this.item);
             } else {
-              alert("fail");
+              alert("请求失败！");
             }
           }).catch((error)=>{
             console.log(error);

@@ -83,7 +83,7 @@
         // 请求发布人信息
         getguy(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
+            url:this.GLOBAL.BASE_URL + 'Home/user/tea_info',
             method:'get',
           }).then((response)=>{
             console.log(response);
@@ -91,7 +91,7 @@
               this.userinfo = response.data.data;
               console.log(this.userinfo);
             } else {
-              alert('fail');
+              alert("请求失败！");
             }
           }).catch((response)=>{
             console.log(response);
@@ -103,7 +103,7 @@
             alert('请完善内容或填写截止时间');
           } else {
             axios({
-              url:this.GLOBAL.BASE_URL + 'apis/Home/wish/pub',
+              url:this.GLOBAL.BASE_URL + 'Home/wish/pub',
               method:'post',
               data:{
                 content: this.content,
@@ -113,12 +113,12 @@
               },
             }).then((response)=>{
               console.log(response);
-              console.log()
+              console.log();
               if(response.data.code == 0){
                 alert('success');
                 this.$router.go(-1);
               } else {
-                alert('fail');
+                alert("请求失败！");
               }
             }).catch((response)=>{
               console.log(response);

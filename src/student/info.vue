@@ -44,7 +44,7 @@
       methods:{
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
+            url: this.GLOBAL.BASE_URL + 'Home/user/stu_info',
           }).then((response)=>{
             console.log(response);
             if(response.data.code ==0){
@@ -59,7 +59,7 @@
         submit(){
           if(this.phone.length == 11){
             axios({
-              url: this.GLOBAL.BASE_URL + 'apis/Home/user/stu_register',
+              url: this.GLOBAL.BASE_URL + 'Home/user/stu_register',
               data:{
                 account: this.userinfo.acc,
                 phone:this.phone,
@@ -72,7 +72,7 @@
                 alert('提交成功');
                 this.$router.go(-1);
               } else {
-                alert('fail');
+                alert("请求失败！");
               }
             }).catch((error)=>{
               console.log(error);

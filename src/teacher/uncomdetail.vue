@@ -19,6 +19,10 @@
       <div class="Mleft">联系方式</div>
       <div class="Mright">18888888888</div>
     </div>
+    <div class="Mcontainer">
+      <div class="Mleft">截止日期</div>
+      <div class="Mright">{{item.deadline}}</div>
+    </div>
     <div class="Mfooter" @click="submit">
       <button>确认完成</button>
     </div>

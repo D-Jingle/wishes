@@ -17,7 +17,6 @@
     </div>
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
-
       <div class="Mright" v-if="">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
@@ -62,14 +61,14 @@
         // 请求信息
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+            url: this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.id,
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.item = response.data.data;
               console.log(this.item);
             } else {
-              alert("fail");
+              alert("请求失败！");
             }
           }).catch((error)=>{
             console.log(error);
@@ -92,7 +91,7 @@
               this.judge = 'D';
             };
             axios({
-              url: this.GLOBAL.BASE_URL + 'apis/Home/wish/confirm',
+              url: this.GLOBAL.BASE_URL + 'Home/wish/confirm',
               method:'post',
               data:{
                 id: this.id,
@@ -105,7 +104,7 @@
                 alert("success");
                 this.$router.go(-1);
               } else {
-                alert('fail');
+                alert("请求失败！");
               }
             }).catch((res)=>{
                 alert('fail');

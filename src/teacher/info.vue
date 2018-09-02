@@ -44,14 +44,14 @@
     methods:{
       getData(){
         axios({
-          url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
+          url: this.GLOBAL.BASE_URL + 'Home/user/tea_info',
         }).then((response)=>{
           console.log(response);
           if(response.data.code ==0){
             this.userinfo = response.data.data;
             console.log(this.userinfo);
           } else {
-            alert('fail');
+            alert("请求失败！");
           }
         }).catch((error)=>{
           console.log(error);
@@ -61,7 +61,7 @@
       submit(){
         if(this.phone.length == 11){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_register',
+            url: this.GLOBAL.BASE_URL + 'Home/user/tea_register',
             data:{
               account:this.userinfo.account,
               phone:this.phone

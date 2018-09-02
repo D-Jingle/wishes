@@ -15,7 +15,6 @@ export default {
     }
   },
   created(){
-
     // 判断是否登陆，登陆过获取信息到各个端，未登陆到登陆页
     this.$router.push('/login');
   }

@@ -35,7 +35,7 @@
       },
       getData(){
         axios({
-          url:this.GLOBAL.BASE_URL + 'apis/Home/wish/tealist',
+          url:this.GLOBAL.BASE_URL + 'Home/wish/tealist',
         }).then((response)=>{
           if(response.data.code == 0){
             console.log(response);
@@ -45,7 +45,7 @@
               this.isData = false;
             }
           } else {
-            alert('fail');
+            alert("请求失败！");
           }
         }).catch((error)=>{
           console.log(error)

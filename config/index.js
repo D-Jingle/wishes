@@ -1,6 +1,5 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var proxyConfig = require('./proxyConfig')
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -22,9 +21,8 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    proxyTable: proxyConfig.proxy,
     env: require('./dev.env'),
-    port: 8080,
+    port: 8000,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

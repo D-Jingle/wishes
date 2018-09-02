@@ -12,6 +12,10 @@
       <div class="Mright">{{item.phone}}</div>
     </div>
     <div class="Mcontainer">
+      <div class="Mleft">截止日期</div>
+      <div class="Mright">{{item.deadline}}</div>
+    </div>
+    <div class="Mcontainer">
       <div class="Mleft">认领人</div>
       <div class="Mright">
         {{userinfo.name}}
@@ -46,7 +50,7 @@
         // 获取心愿信息
         getWishDetail(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.wishId,
+            url:this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.wishId,
             method:'get'
           }).then((response)=>{
             if(response.data.code == 0) {
@@ -64,7 +68,7 @@
         getUserinfo(){
           console.log('aaa');
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
+            url: this.GLOBAL.BASE_URL + 'Home/user/stu_info',
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
@@ -81,7 +85,7 @@
         // 接受心愿
         submit(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/accept',
+            url: this.GLOBAL.BASE_URL + 'Home/wish/accept',
             method:'post',
             data:{
               id: this.wishId,

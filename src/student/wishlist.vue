@@ -3,8 +3,12 @@
     <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="task">
       <div v-for="(item,index) in task" :key="index + 'sk'" class="task-item">
-        <div class="icon">❤️</div>
-        <div class="content">{{item.content}}</div>
+        <div class="icon">
+          <img src="../../static/icon/heart.png" alt="">
+        </div>
+        <div class="content">
+          {{item.content}}
+        </div>
         <div class="btn-box">
           <button @click="towishdetail(item.id)">认领</button>
         </div>
@@ -25,7 +29,7 @@
       methods:{
         towishdetail(id){
             axios({
-              url: this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
+              url: this.GLOBAL.BASE_URL + 'Home/user/stu_info',
             }).then((response)=>{
               console.log(response);
               if(response.data.code ==0){
@@ -40,13 +44,10 @@
             }).catch((error)=>{
               console.log(error);
             })
-
-
-
         },
         getData(){
           axios({
-            url:'apis/Home/wish/stulist',
+            url:this.GLOBAL.BASE_URL + 'Home/wish/stulist',
           }).then((response)=>{
             console.log(response);
             if(response.data.code == 0) {
@@ -56,7 +57,7 @@
                 this.isData = false;
               }
             } else {
-              alert('fail');
+              alert("请求失败！");
             }
           }).catch((error)=>{
             console.log(error);
@@ -72,16 +73,21 @@
 <style scoped>
   .task{
     padding: 1rem;
+    /*display: flex;*/
+    /*flex-direction: row;*/
   }
   .task-item{
     display: flex;
     flex-direction: row;
-    margin: 1rem 0;
-    height: 1.5rem;
+    margin: 0.5rem 0;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
   }
   .icon{
     /*flex-grow: 1;*/
-    margin-left: 5%;
+    margin-left: 2%;
+    height: 1.5rem;
   }
   .content{
     /*flex-grow: 4;*/
@@ -94,10 +100,14 @@
     color: white;
     text-align: center;
   }
-  .btn-box button{
+  .btn-box button {
     width: 100%;
     height: 100%;
     background-color: dodgerblue;
+  }
+  .icon img{
+    height: 1.5rem;
+    width: 1.5rem;
   }
 
 </style>

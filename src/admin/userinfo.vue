@@ -31,7 +31,7 @@
       methods:{
           getUserinfo(){
             axios({
-              url:this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
+              url:this.GLOBAL.BASE_URL + 'Home/user/stu_info',
               data:{
                 acc:this.id
               },
@@ -39,9 +39,11 @@
             }).then((res)=>{
               if(res.data.code ==0){
                 this.userinfo = res.data.data;
+              } else {
+                alert('请求失败！')
               }
             }).catch((err)=>{
-              console.log(err)
+              console.log(err);
             })
           }
       }

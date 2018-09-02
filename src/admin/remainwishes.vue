@@ -12,6 +12,10 @@
     <div class="Mright">{{item.phone}}</div>
   </div>
   <div class="Mcontainer">
+    <div class="Mleft">截止日期</div>
+    <div class="Mright">{{item.deadline}}</div>
+  </div>
+  <div class="Mcontainer">
     <div class="Mleft">分配至</div>
     <div class="Mright">
       <input type="text" placeholder="点击填写学号" v-model="acc">
@@ -38,7 +42,7 @@
       methods:{
         submit(){
           axios({
-            url:this.GLOBAL.BASE_URL + 'apis/Home/user/stu_info',
+            url:this.GLOBAL.BASE_URL + 'Home/user/stu_info',
             method:'post',
             data:{
               account: this.acc
@@ -51,7 +55,7 @@
               this.tel = this.userinfo.phone;
 
               axios({
-                url: this.GLOBAL.BASE_URL + 'apis/Home/wish/admassign',
+                url: this.GLOBAL.BASE_URL + 'Home/wish/admassign',
                 method:'post',
                 data:{
                   id:this.id,
@@ -63,14 +67,14 @@
                 console.log(res)
                 if(res.data.code == 0){
                   console.log(res);
-                  alert("success");
+                  alert("成功！");
                   this.$router.go(-1);
                 } else {
-                  alert('fail！');
+                  alert('失败！');
                 }
               }).catch((error)=>{
                 console.log(error);
-                alert('fail');
+                alert('失败！');
               })
             } else {
               alert(response.data.message);
@@ -81,14 +85,14 @@
         },
         getData(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/wish/info?id=' + this.id,
+            url: this.GLOBAL.BASE_URL + 'Home/wish/info?id=' + this.id,
           }).then((response)=>{
             if(response.data.code == 0){
               console.log(response);
               this.item = response.data.data;
               console.log(this.item);
             } else {
-              alert('fail');
+              alert('失败！');
             }
           }).catch((error)=>{
             console.log(error)

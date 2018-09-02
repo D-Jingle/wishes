@@ -47,7 +47,7 @@
       methods:{
         toissue(){
           axios({
-            url: this.GLOBAL.BASE_URL + 'apis/Home/user/tea_info',
+            url: this.GLOBAL.BASE_URL + 'Home/user/tea_info',
           }).then((response)=>{
             console.log(response);
             if(response.data.code ==0){
@@ -59,7 +59,7 @@
                 this.$router.push('/teacher/issue');
               }
             } else {
-              alert('fail');
+              alert("请求失败！");
             }
           }).catch((error)=>{
             console.log(error);
