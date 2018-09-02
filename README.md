@@ -4,13 +4,13 @@
 
 ## 技术栈
 
-> Vue
+- Vue
 
-> Vue Router
+- Vue Router
 
-> Vue Store
+- Vue Store
 
-> Webpack
+- Webpack
 
 ## Build Setup
 
