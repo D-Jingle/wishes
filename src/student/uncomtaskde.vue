@@ -51,7 +51,7 @@
             console.log(response);
             if(response.data.code == 0){
               console.log(response);
-              alert('success');
+              alert('确认完成成功！');
               this.$router.go(-1);
             } else {
               alert('fail');

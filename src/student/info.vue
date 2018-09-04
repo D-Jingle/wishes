@@ -14,17 +14,21 @@
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
       <div class="Mright" v-if="userinfo.phone != ''">{{userinfo.phone}}</div>
-      <div class="Mright" v-if="userinfo.phone == '' ">
+      <div class="Mright" v-if="userinfo.phone == ''">
         <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right">
       </div>
     </div>
-    <div class="Mcontainer">
-      <div class="Mleft">志愿总时长</div>
-      <div class="Mright">{{userinfo.time}}</div>
-    </div>
+    <!--<div class="Mcontainer">-->
+      <!--<div class="Mleft">志愿总时长</div>-->
+      <!--<div class="Mright">{{userinfo.time}}</div>-->
+    <!--</div>-->
     <div class="Mfooter" @click="submit" v-if="userinfo.phone == '' || userinfo.name == ''">
       <button>提交联系方式</button>
     </div>
+    <div class="Mfooter2" @click="logout">
+      <button>注   销</button>
+    </div>
+
   </div>
 </template>
 
@@ -42,6 +46,11 @@
         this.getData();
       },
       methods:{
+        logout(){
+          localStorage.account = '';
+          localStorage.password = '';
+          location.reload();
+        },
         getData(){
           axios({
             url: this.GLOBAL.BASE_URL + 'Home/user/stu_info',
@@ -86,5 +95,16 @@
 </script>
 
 <style scoped>
-
+  .Mfooter2{
+    position: absolute;
+    bottom: 9rem;
+    width: 100%;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: dodgerblue;
+    border-radius: 10%;
+    color: white;
+  }
 </style>

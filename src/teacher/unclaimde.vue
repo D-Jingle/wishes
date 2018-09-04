@@ -89,7 +89,7 @@
               console.log(this.id);
               console.log(response);
               if(response.data.code == 0){
-                alert('success');
+                alert('取消成功!');
                 this.$router.go(-1);
               } else {
                 alert("fail");
@@ -113,7 +113,7 @@
             console.log(this.id);
             console.log(response);
             if(response.data.code == 0){
-              alert('success');
+              alert('成功！');
             } else {
               alert("fail");
             }

@@ -15,8 +15,38 @@ export default {
     }
   },
   created(){
-    // 判断是否登陆，登陆过获取信息到各个端，未登陆到登陆页
-    this.$router.push('/login');
+    if(localStorage.account && localStorage.password && localStorage.account != '' && localStorage.password != ''){
+      axios({
+        url:this.GLOBAL.BASE_URL + 'Home/user/login',
+        data:{
+          account:localStorage.account,
+          password:localStorage.password
+        },
+        method:'post',
+      }).then((response)=>{
+        console.log(response);
+        if(response.data.code == 0){
+          if(response.data.data.admin == 3){
+            this.$router.push('/student');
+          } else if (response.data.data.admin == 2){
+            this.$router.push('/teacher/wishlisttea/unclaim');
+          } else if (response.data.data.admin == 1){
+            this.$router.push('/admin/wishlistadm/unallotadm');
+          } else {
+            alert('请输入用户名密码');
+          }
+        } else {
+          alert("请重新输入用户名密码");
+        }
+      }).catch((error)=>{
+        console.log(error);
+        alert('登陆失败');
+      })
+    } else {
+      localStorage.account = '';
+      localStorage.password = '';
+      this.$router.push('/login');
+    }
   }
 };
 </script>
@@ -71,7 +101,7 @@ body {
 }
 .Mfooter{
   position: absolute;
-  bottom: 8rem;
+  bottom: 5rem;
   width: 100%;
   height: 2.2rem;
   display: flex;
@@ -80,6 +110,18 @@ body {
   background-color: dodgerblue;
   border-radius: 10%;
   color: white;
+}
+.Mfooter button{
+  color: white;
+  background-color: dodgerblue;
+  border: 0;
+  border-color: dodgerblue;
+}
+.Mfooter2 button{
+  color: white;
+  background-color: dodgerblue;
+  border: 0;
+  border-color: dodgerblue;
 }
 
 .Gcontainer{
@@ -210,7 +252,7 @@ body {
 }
 .Aguy{
   /*flex-grow: 2;*/
-  width: 29%;
+  width: 37%;
   color: #aaa;
   font-size: .9rem;
 }

@@ -94,6 +94,7 @@
     width: 60%;
     margin: 0 5%;
     overflow: hidden;
+    height: 1.5rem;
   }
   .btn-box{
     /*flex-grow: 1;*/

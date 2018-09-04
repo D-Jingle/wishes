@@ -1,12 +1,32 @@
 <template>
   <div>
-    <div class="login">
+    <div class="top_div">
       <div class="welcome"><img src="../../static/img/welcome.png"></div>
-      <div class="login-form">
-        <div class="login-inp"><label>登录</label><input type="text" placeholder="" v-model="account"></div>
-        <div class="login-inp"><label>密码</label><input type="password" placeholder="" v-model="password"></div>
-        <div class="login-inp"><div @click="submit()">立即登录</div></div>
+    </div>
+    <div style="width: 100%;height: 200px;margin: auto auto;background: #ffffff;text-align: center;margin-top: -130px;border: 1px solid #e7e7e7">
+      <div class="box" style="position: absolute; width: 100%; height: 96px; display: flex; justify-content: center">
+        <div style="width: 97px;height: 96px;position: absolute">
+          <div class="tou"></div>
+          <div id="left_hand" class="initial_left_hand"></div>
+          <div id="right_hand" class="initial_right_hand"></div>
+        </div>
       </div>
+      <p style="padding: 30px 0px 10px 0px;position: relative;">
+        <span class="u_logo"></span>
+        <input class="ipt" type="text" placeholder="请输入用户名" v-model="account">
+      </p>
+      <p style="position: relative;">
+        <span class="p_logo"></span>
+        <input id="password" class="ipt" type="password"  placeholder="请输入密码" v-model="password">
+      </p>
+
+      <div style="height: 50px;line-height: 50px;margin-top: 20px;border-top: 1px solid #e7e7e7;">
+          <span>
+               <a href="#" @click="submit()" style="background: #008ead;padding: 7px 10px;border-radius: 4px;border: 1px solid #1a7598;color: #FFF;font-weight: bold;">登陆</a>
+           </span>
+      </div>
+    </div>
+    <div style="position: fixed;bottom: 0px;text-align: center;width: 100%;">
     </div>
     <!--<div class="container">-->
       <!--<div class="text">用户名</div>-->
@@ -48,6 +68,8 @@
           }).then((response)=>{
             console.log(response);
             if(response.data.code == 0){
+              localStorage.account = this.account;
+              localStorage.password = this.password;
               if(response.data.data.admin == 3){
                 this.$router.push('/student');
               } else if (response.data.data.admin == 2){
@@ -95,16 +117,80 @@
     background-color: dodgerblue;
     margin-top: 2rem;
   }
+  .welcome img{
+    width:100%;
+    margin-top: 6rem
+  }
+  body{
+    background: #ebebeb;
+    font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+    color: #222;
+    font-size: 12px;
+  }
+  *{padding: 0px;margin: 0px;}
+  .top_div{
+    background: #008ead;
+    width: 100%;
+    height: 400px;
+  }
+  .ipt{
+    border: 1px solid #d3d3d3;
+    padding: 10px 10px;
+    width: 80%;
+    border-radius: 4px;
+    padding-left: 35px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  }
+  .ipt:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+  }
+  .u_logo{
+    background: url("http://peert37b7.bkt.clouddn.com/username.png") no-repeat;
+    padding: 10px 10px;
+    position: absolute;
+    top: 55%;
+    left: 7.7%;
 
-
-  .login{width:100%;height:100%;background:url('http://peert37b7.bkt.clouddn.com/login-bg.png') no-repeat;background-size:cover;position:fixed;z-index:-10;}
-  .welcome{width:100%;margin:25% 0;}
-  .welcome img{width:100%;}
-  .login-inp{margin:0 30px 15px 30px;border:1px solid #fff;border-radius:25px;}
-  .login-inp label{width:4em;text-align:center;display:inline-block;color:#fff;}
-  .login-inp input{line-height:40px;color:#fff;background-color:transparent;border:none;outline: none;}
-  .login-inp div{display:block;width:100%;text-align:center;line-height:40px;color:#fff;font-size:16px;letter-spacing:5px;}
-  .login-txt{text-align:center;color:#fff;}
-  .login-txt a{color:#fff;padding:0 5px;}
+  }
+  .p_logo{
+    background: url("http://peert37b7.bkt.clouddn.com/password.png") no-repeat;
+    padding: 10px 10px;
+    position: absolute;
+    top: 33%;
+    left: 7.7%;
+  }
+  a{
+    text-decoration: none;
+  }
+  .tou{
+    background: url("http://peert37b7.bkt.clouddn.com/tou.png") no-repeat;
+    width: 100%;
+    height: 92px;
+    position: absolute;
+    top: -90%;
+  }
+  .initial_left_hand{
+    background: url("http://peert37b7.bkt.clouddn.com/hand.png") no-repeat;
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    top: -12px;
+    left: -30px;
+  }
+  .initial_right_hand{
+    background: url("http://peert37b7.bkt.clouddn.com/hand.png") no-repeat;
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    top: -12px;
+    right: -30px;
+  }
 
 </style>

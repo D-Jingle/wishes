@@ -1,4 +1,4 @@
-# wishes2
+# wishes
 
 > 相益
 

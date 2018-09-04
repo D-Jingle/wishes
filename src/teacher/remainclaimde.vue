@@ -74,8 +74,6 @@
             console.log(error);
           })
         },
-
-        // 待写
         submit(){
           console.log(this.index);
           if(this.index == '' && this.index != 0){
@@ -101,7 +99,7 @@
             }).then((res)=>{
               console.log(res);
               if(res.data.code == 0){
-                alert("success");
+                alert("评价成功！");
                 this.$router.go(-1);
               } else {
                 alert("请求失败！");

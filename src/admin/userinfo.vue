@@ -12,6 +12,7 @@
         <div class="Mleft">志愿总时长</div>
         <div class="Mright">{{userinfo.time}}</div>
       </div>
+
     </div>
 </template>
 

@@ -10,7 +10,7 @@
           <div></div>
         </div>
         <div class="Acontent">{{item.content}}</div>
-        <div class="Aguy">接受人：<span @click.stop="touserinfo(item.angel_id)">代靖</span></div>
+        <div class="Aguy">接受人：<span @click.stop="touserinfo(item.angel_id)">{{item.angel_guy}}</span></div>
       </li>
     </ul>
   </div>

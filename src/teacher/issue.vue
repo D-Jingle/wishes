@@ -115,7 +115,7 @@
               console.log(response);
               console.log();
               if(response.data.code == 0){
-                alert('success');
+                alert('发送成功!');
                 this.$router.go(-1);
               } else {
                 alert("请求失败！");

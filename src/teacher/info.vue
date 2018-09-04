@@ -25,6 +25,9 @@
     <div class="Mfooter" @click="submit" v-if="userinfo.phone == ''">
       <button>提交联系方式</button>
     </div>
+    <div class="Mfooter2" @click="logout">
+      <button>注   销</button>
+    </div>
   </div>
 </template>
 
@@ -57,6 +60,11 @@
           console.log(error);
         })
       },
+      logout(){
+        localStorage.account = '';
+        localStorage.password = '';
+        location.reload();
+      },
       // 提交电话
       submit(){
         if(this.phone.length == 11){
@@ -87,5 +95,16 @@
 </script>
 
 <style scoped>
-
+  .Mfooter2{
+    position: absolute;
+    bottom: 9rem;
+    width: 100%;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: dodgerblue;
+    border-radius: 10%;
+    color: white;
+  }
 </style>

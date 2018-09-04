@@ -34,10 +34,10 @@
         <img :src="acpic[3]" alt="">
       </div>
     </div>
-    <div class="Mcontainer">
-      <div class="Mleft">志愿时长</div>
-      <div class="Mright">待开发</div>
-    </div>
+    <!--<div class="Mcontainer">-->
+      <!--<div class="Mleft">志愿时长</div>-->
+      <!--<div class="Mright">待开发</div>-->
+    <!--</div>-->
   </div>
 </template>
 
