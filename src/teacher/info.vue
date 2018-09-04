@@ -1,25 +1,20 @@
+
+
 <template>
   <div class="box">
     <div class="Mcontainer">
       <div class="Mleft">姓名</div>
-      <!--<div class="Mright" v-if="userinfo.nickname == ''">-->
-        <!--<input type="text" placeholder="请输入姓名" v-model="name" style="text-align: right">-->
-      <!--</div>-->
       <div class="Mright">{{userinfo.nickname}}</div>
     </div>
     <div class="Mcontainer">
       <div class="Mleft">工号</div>
       <div class="Mright">{{userinfo.account}}</div>
     </div>
-    <!--<div class="Mcontainer">-->
-      <!--<div class="Mleft">时间</div>-->
-      <!--<div class="Mright">待开发</div>-->
-    <!--</div>-->
     <div class="Mcontainer">
       <div class="Mleft">联系方式</div>
       <div class="Mright" v-if="userinfo.phone != ''">{{userinfo.phone}}</div>
       <div class="Mright" v-if="userinfo.phone == ''">
-        <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right">
+        <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right;border: 0;outline:none;">
       </div>
     </div>
     <div class="Mfooter" @click="submit" v-if="userinfo.phone == ''">

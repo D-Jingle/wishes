@@ -4,7 +4,7 @@
       <div class="Mleft">姓名</div>
       <div class="Mright" v-if="userinfo.name != ''">{{userinfo.name}}</div>
       <div class="Mright" v-if="userinfo.name == '' ">
-        <input type="text" placeholder="请输入姓名" v-model="name" style="text-align: right">
+        <input type="text" placeholder="请输入姓名" v-model="name" style="text-align: right;border: 0;outline:none;">
       </div>
     </div>
     <div class="Mcontainer">
@@ -15,7 +15,7 @@
       <div class="Mleft">联系方式</div>
       <div class="Mright" v-if="userinfo.phone != ''">{{userinfo.phone}}</div>
       <div class="Mright" v-if="userinfo.phone == ''">
-        <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right">
+        <input type="text" placeholder="请输入电话号" v-model="phone" style="text-align: right;border: 0;outline:none;">
       </div>
     </div>
     <!--<div class="Mcontainer">-->
