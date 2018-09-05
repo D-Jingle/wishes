@@ -20,6 +20,10 @@
       <div class="Mright">{{item.angel.phone}}</div>
     </div>
     <div class="Mcontainer">
+      <div class="Mleft">学院</div>
+      <div class="Mright">{{item.angel.college}}</div>
+    </div>
+    <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
       <div class="Mright">
         已完成

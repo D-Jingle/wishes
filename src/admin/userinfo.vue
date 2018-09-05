@@ -5,12 +5,16 @@
         <div class="Mright">{{userinfo.name}}</div>
       </div>
       <div class="Mcontainer">
+      <div class="Mleft">学号</div>
+      <div class="Mright">{{userinfo.acc}}</div>
+      </div>
+      <div class="Mcontainer">
         <div class="Mleft">学号</div>
         <div class="Mright">{{userinfo.acc}}</div>
       </div>
       <div class="Mcontainer">
-        <div class="Mleft">志愿总时长</div>
-        <div class="Mright">{{userinfo.time}}</div>
+        <div class="Mleft">学院</div>
+        <div class="Mright">{{userinfo.college}}</div>
       </div>
 
     </div>

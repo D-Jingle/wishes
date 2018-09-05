@@ -1,8 +1,9 @@
 <template>
   <div class="box">
     <div class="none" v-if="!isData"> 暂无数据</div>
+
     <div class="Gcontainer">
-      <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'b'">
+      <ul class="Gcontainer-ul" v-for="(item,index) in task" v-bind:key="index + 'b'" v-if="item.college == userinfo.college">
         <li class="Gcontainer-li"  @click="touncomdetail(item.id)">
           <div class="Gcircle">
             <div></div>
@@ -12,6 +13,7 @@
         </li>
       </ul>
     </div>
+
   </div>
 </template>
 
@@ -21,12 +23,28 @@
       data(){
         return {
           task:[],
-          isData: true
+          isData: true,
+          userinfo:{}
         }
       },
       methods:{
         touncomdetail(id){
           this.$router.push({name:'claimde',params:{Id:id}})
+        },
+        getUserinfo(){
+          axios({
+            url: this.GLOBAL.BASE_URL + 'Home/user/tea_info',
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code == 0){
+              this.userinfo = response.data.data;
+              console.log(this.userinfo);
+            } else {
+              alert("请求用户信息失败！");
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
         },
         getData(){
           axios({
@@ -49,6 +67,7 @@
       },
       created(){
         this.getData();
+        this.getUserinfo();
       }
     }
 </script>

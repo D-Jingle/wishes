@@ -12,6 +12,7 @@
         <div class="Mleft">联系方式</div>
         <div class="Mright">{{item.phone}}</div>
       </div>
+
       <div class="Mcontainer">
         <div class="Mleft">认领人</div>
         <div class="Mright">{{item.angel.guy}}</div>
@@ -23,6 +24,10 @@
       <div class="Mcontainer">
         <div class="Mleft">截止日期</div>
         <div class="Mright">{{item.deadline}}</div>
+      </div>
+      <div class="Mcontainer">
+        <div class="Mleft">学院</div>
+        <div class="Mright">{{item.college}}</div>
       </div>
       <div class="Mcontainer">
         <div class="Mleft">志愿时长</div>

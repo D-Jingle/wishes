@@ -16,6 +16,11 @@
     <div class="Mright">{{item.deadline}}</div>
   </div>
   <div class="Mcontainer">
+    <div class="Mleft">学院</div>
+    <div class="Mright">{{item.college}}</div>
+  </div>
+
+  <div class="Mcontainer">
     <div class="Mleft">分配至</div>
     <div class="Mright">
       <input type="text" placeholder="点击填写学号" v-model="acc">
@@ -110,6 +115,7 @@
   .Mright input{
     text-align: right;
     color:#aaa;
+    border: 0 solid #ffffff;
   }
 
 </style>

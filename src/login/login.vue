@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <div class="top_div">
@@ -30,6 +28,9 @@
     </div>
     <div style="position: fixed;bottom: 0px;text-align: center;width: 100%;">
     </div>
+
+
+
     <!--<div class="container">-->
       <!--<div class="text">用户名</div>-->
       <!--<input type="text" v-model="account">-->
@@ -40,6 +41,9 @@
       <!--<button @click="submit('/teacher')" class="btn">登陆教师端</button>-->
       <!--<button @click="submit('/admin')" class="btn">登陆管理端</button>-->
     <!--</div>-->
+
+
+
   </div>
 </template>
 
@@ -57,8 +61,8 @@
       },
       methods:{
         submit(add){
-          // console.log(this.account);
-          // console.log(this.password);
+          console.log(this.account);
+          console.log(this.password);
           // this.$router.push(add);
           axios({
             url:this.GLOBAL.BASE_URL + 'Home/user/login',

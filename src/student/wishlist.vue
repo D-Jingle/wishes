@@ -2,7 +2,7 @@
   <div class="box">
     <div class="none" v-if="!isData"> 暂无数据</div>
     <div class="task">
-      <div v-for="(item,index) in task" :key="index + 'sk'" class="task-item">
+      <div v-for="(item,index) in task" :key="index + 'sk'" class="task-item" v-if="userinfo.college == item.college">
         <div class="icon">
           <img src="../../static/icon/heart.png" alt="">
         </div>
@@ -23,7 +23,8 @@
       data() {
         return {
           task: [],
-          isData: true
+          isData: true,
+          userinfo:{}
         }
       },
       methods:{
@@ -34,8 +35,7 @@
               console.log(response);
               if(response.data.code ==0){
                 this.userinfo = response.data.data;
-                console.log(this.userinfo);
-                if(this.userinfo.name == '' || this.userinfo.phone == ''){
+                if(this.userinfo.name == '' || this.userinfo.phone == '' || this.userinfo.college == ''){
                   alert('请跳转个人信息页面填写个人信息后再认领信息！')
                 } else {
                   this.$router.push({name:'wishdetail',params:{Id:id}});
@@ -45,11 +45,24 @@
               console.log(error);
             })
         },
+        getUserinfo(){
+          axios({
+            url: this.GLOBAL.BASE_URL + 'Home/user/stu_info',
+          }).then((response)=>{
+            console.log(response);
+            if(response.data.code ==0){
+              this.userinfo = response.data.data;
+              console.log(this.userinfo.college);
+              console.log(this.userinfo);
+            }
+          }).catch((error)=>{
+            console.log(error);
+          })
+        },
         getData(){
           axios({
             url:this.GLOBAL.BASE_URL + 'Home/wish/stulist',
           }).then((response)=>{
-            console.log(response);
             if(response.data.code == 0) {
               console.log(response);
               this.task = response.data.data.unaccepted;
@@ -66,6 +79,7 @@
       },
       created(){
         this.getData();
+        this.getUserinfo();
       }
     }
 </script>

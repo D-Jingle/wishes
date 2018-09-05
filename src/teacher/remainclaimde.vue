@@ -76,16 +76,16 @@
         },
         submit(){
           console.log(this.index);
-          if(this.index == '' && this.index != 0){
+          if(this.index == -1){
             alert('请点击表情进行评价！');
           } else {
-            if (this.index ==0 ){
+            if (this.index == 0 ){
               this.judge = 'A';
-            } else if (this.index ==1 ){
+            } else if (this.index == 1 ){
               this.judge = 'B';
-            } else if (this.index ==2 ){
+            } else if (this.index == 2 ){
               this.judge = 'C';
-            } else if (this.index ==3 ){
+            } else if (this.index == 3 ){
               this.judge = 'D';
             };
             axios({
@@ -112,7 +112,7 @@
       },
       data(){
         return{
-          index:'',
+          index: -1,
           item:{},
           id:'',
           nowpic:[],

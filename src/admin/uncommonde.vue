@@ -24,6 +24,10 @@
       <div class="Mright">{{item.deadline}}</div>
     </div>
     <div class="Mcontainer">
+      <div class="Mleft">学院</div>
+      <div class="Mright">{{item.college}}</div>
+    </div>
+    <div class="Mcontainer">
       <div class="Mleft">完成质量</div>
       <div class="Mright">
         待评价

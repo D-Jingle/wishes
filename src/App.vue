@@ -52,6 +52,9 @@ export default {
 </script>
 
 <style>
+  .box{
+    margin-bottom: 5rem;
+  }
 body {
   background-color: #f8f8f8;
 }
